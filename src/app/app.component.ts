@@ -19,17 +19,19 @@ export class AppComponent implements OnInit {
     this.loadStocks();
   }
 
+
   loadStocks() {
-    this.stockService.getStocks().subscribe((data: Stock[]) => this.stocks = data);
-  }
-
-  addStock() {
-    if (!this.newStockText.trim()) return;
-
-    const newStock: Stock = { id: 0, text: this.newStockText };
-    this.stockService.addStock(newStock).subscribe((saved: Stock) => {
-      this.stocks.push(saved);
-      this.newStockText = ''; // Input zurücksetzen
+    this.stockService.getStocks().subscribe(data => {
+      this.stocks = data;
     });
   }
+
+addStock() {
+  if (!this.newStockText.trim()) return;
+
+  this.stockService.addStock(this.newStockText).subscribe((saved: Stock) => {
+    this.stocks.push(saved);
+    this.newStockText = ''; // Input zurücksetzen
+  });
+}
 }

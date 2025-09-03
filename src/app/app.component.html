@@ -1,10 +1,14 @@
-<h1>Portfolio</h1>
+<div style="max-width: 600px; margin: 2rem auto; font-family: Arial, sans-serif;">
+  <h1>📈 Stocks</h1>
 
-<form (ngSubmit)="addStock()">
-  <input type="text" [(ngModel)]="newStockText" name="stockText" placeholder="Stock Name" required>
-  <button type="submit">Hinzufügen</button>
-</form>
+  <div style="margin-bottom: 1rem;">
+    <input [(ngModel)]="newStockText" placeholder="Neue Aktie..." />
+    <button (click)="addStock()">Hinzufügen</button>
+  </div>
 
-<ul>
-  <li *ngFor="let stock of stocks">{{ stock.text }}</li>
-</ul>
+  <ul>
+    <li *ngFor="let stock of stocks">
+      {{ stock.id }} - {{ stock.text }}
+    </li>
+  </ul>
+</div>
